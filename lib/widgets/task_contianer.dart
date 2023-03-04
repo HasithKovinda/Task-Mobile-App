@@ -48,15 +48,16 @@ class TaskContainer extends StatelessWidget {
                             ? Text(
                                 task.getAllTasks[index].name,
                                 style: const TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 15,
                                     color: Colors.grey,
                                     decoration: TextDecoration.lineThrough),
+                                softWrap: true,
                               )
                             : Text(
                                 task.getAllTasks[index].name,
                                 style: const TextStyle(
                                   color: Colors.grey,
-                                  fontSize: 20,
+                                  fontSize: 15,
                                 ),
                               ),
                       ],
