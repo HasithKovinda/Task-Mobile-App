@@ -51,18 +51,13 @@ class Auth with ChangeNotifier {
     }
   }
 
+//user register method
   Future<void> Signup(String email, String password) async {
     return Authenticate(email, password, 'signUp');
   }
 
+//user login method
   Future<void> Login(String email, String password) async {
     return Authenticate(email, password, 'signInWithPassword');
-  }
-
-  void logout() {
-    _token = null;
-    _userId = null;
-    _expiredate = null;
-    notifyListeners();
   }
 }

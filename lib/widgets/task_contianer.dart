@@ -15,7 +15,7 @@ class TaskContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final task = Provider.of<Task>(context);
+    final task = Provider.of<retrieve>(context);
     return Container(
         height: MediaQuery.of(context).size.height * 0.4,
         margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 6),

@@ -18,9 +18,9 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => Auth()),
-          ChangeNotifierProxyProvider<Auth, Task>(
-            create: (ctx) => Task('', []),
-            update: (_, auth, previous) => Task(auth.token as String,
+          ChangeNotifierProxyProvider<Auth, retrieve>(
+            create: (ctx) => retrieve('', []),
+            update: (_, auth, previous) => retrieve(auth.token as String,
                 previous == null ? [] : previous.getAllTasks),
           )
         ],

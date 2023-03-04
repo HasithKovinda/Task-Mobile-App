@@ -5,7 +5,7 @@ import '../Model/Tasks.dart';
 
 import 'package:http/http.dart' as http;
 
-class Task with ChangeNotifier {
+class retrieve with ChangeNotifier {
   List<Tasks> _tasks = [];
   List<Tasks> get getAllTasks {
     return [..._tasks];
@@ -13,8 +13,9 @@ class Task with ChangeNotifier {
 
   final String? authToken;
 
-  Task(this.authToken, this._tasks);
+  retrieve(this.authToken, this._tasks);
 
+//add task to db
   Future<void> addTasks(Tasks task) async {
     try {
       var url = Uri.https('ctse-14e8f-default-rtdb.firebaseio.com',
@@ -32,6 +33,7 @@ class Task with ChangeNotifier {
     }
   }
 
+//retrive all the tasks form db
   Future<void> fetchTasks() async {
     try {
       var url = Uri.https('ctse-14e8f-default-rtdb.firebaseio.com',
@@ -55,6 +57,7 @@ class Task with ChangeNotifier {
     }
   }
 
+//update the status of the task in db
   Future<void> changeTaskStatus(String id, bool? value) async {
     final taskIndex = _tasks.indexWhere((el) => el.id == id);
     _tasks[taskIndex].status = value!;
@@ -64,6 +67,7 @@ class Task with ChangeNotifier {
     await http.patch(url, body: json.encode({'status': value}));
   }
 
+//delete a task in db
   Future<void> deleteTask(String id) async {
     _tasks.removeWhere((element) => element.id == id);
     notifyListeners();

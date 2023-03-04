@@ -25,7 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
       setState(() {
         isLoading = true;
       });
-      Provider.of<Task>(context).fetchTasks().then((_) {
+      Provider.of<retrieve>(context).fetchTasks().then((_) {
         setState(() {
           isLoading = false;
         });
@@ -36,12 +36,12 @@ class _MyHomePageState extends State<MyHomePage> {
     super.didChangeDependencies();
   }
 
-  //take text input
+  //take text input value
   final taskName = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final task = Provider.of<Task>(context);
+    final task = Provider.of<retrieve>(context);
 //get user input
     Future<void> getUserInput() async {
       setState(() {
@@ -58,6 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
       task.changeTaskStatus(id, value);
     }
 
+// delete task
     void deleteTask(String id) {
       task.deleteTask(id);
     }

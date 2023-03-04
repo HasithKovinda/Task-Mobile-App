@@ -13,8 +13,6 @@ class AuthRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
-    // final transformConfig = Matrix4.rotationZ(-8 * pi / 180);
-    // transformConfig.translate(-10.0);
     return Scaffold(
       // resizeToAvoidBottomInset: false,
       body: Stack(
@@ -91,6 +89,7 @@ class _AuthCardState extends State<AuthCard> {
             ));
   }
 
+// get user inputs
   Future<void> _submit() async {
     if (!_formKey.currentState!.validate()) {
       // Invalid!
@@ -100,6 +99,7 @@ class _AuthCardState extends State<AuthCard> {
     setState(() {
       _isLoading = true;
     });
+    //trigger login or signup methods base on auth mode
     try {
       if (_authMode == AuthMode.Login) {
         await Provider.of<Auth>(context, listen: false).Login(
@@ -108,6 +108,7 @@ class _AuthCardState extends State<AuthCard> {
         await Provider.of<Auth>(context, listen: false).Signup(
             _authData['email'] as String, _authData['password'] as String);
       }
+      //check db base errors
     } catch (erorr) {
       if (erorr.toString().contains('EMAIL_NOT_FOUND')) {
         errorMessage = "Could not find a user with that email";
